@@ -15,19 +15,23 @@ import Texture from "./assets/uv_grid_opengl.jpg"
 class ThreeScene extends Component {
   render() {
 
-		let scene, camera, renderer, object;
+		let scene, camera, renderer, cube;
+		let mouseX = 0, mouseY = 0;
+		let windowHalfX = window.innerWidth / 2;
+		let windowHalfY = window.innerHeight / 2;
 
     function init() {
       scene = new THREE.Scene();
       
-      camera = new THREE.PerspectiveCamera( 45, window.innerWidth/window.innerHeight,1,2000 );
-			camera.position.z = 250;
+      camera = new THREE.PerspectiveCamera( 45, window.innerWidth/window.innerHeight,1,1000 );
+			camera.position.z = 60;
 
       renderer = new THREE.WebGLRenderer({ antialias: true});
 			renderer.setClearColor("#DDD")
       renderer.setSize( window.innerWidth, window.innerHeight );
 			
       document.body.appendChild( renderer.domElement );
+			document.addEventListener( 'mousemove', onDocumentMouseMove, false ); //For Mouse Animation
 
 			// Add a light
 			const ambientLight = new THREE.AmbientLight( 0xcccccc, 0.4 );
@@ -73,25 +77,26 @@ class ThreeScene extends Component {
 			// }, onProgress, onError );
 
 
+      // Model setting
 			const loader = new OBJLoader();
 			loader.load(MODEL, function(object) {
 				scene.add(object);
 				// myObj = object;
-				object.position.z -= 30;
-				object.rotation.x = 1350;
+				object.position.z -= 0;
+				// object.position.y = - 95;
+				object.rotation.x = 101;
 
 				renderer.render(scene,camera);
 			});
 
       // // Object setting
-      // const geometry = new THREE.BoxGeometry( 2, 2, 2 );
+      // const geometry = new THREE.BoxGeometry( 4, 4, 4 );
       // // const texture = new THREE.TextureLoader().load('textures/crate.gif');
       // const material = new THREE.MeshBasicMaterial({ wireframe: true })
       // // const material = new THREE.MeshBasicMaterial( { color: 0x0000ff } );
 
       // cube = new THREE.Mesh( geometry, material );
       // scene.add( cube );
-      // camera.position.z = 5;
 
 			// this.THREE = THREE;
 			// const loader = new this.THREE.OBJLoader();
@@ -128,8 +133,28 @@ class ThreeScene extends Component {
 
     // window.addEventListener('resize', onWindowResize, false)
 
+		//For Mouse Animation
+		function onDocumentMouseMove( event ) {
+			mouseX = ( event.clientX - windowHalfX ) / 2;
+			mouseY = ( event.clientY - windowHalfY ) / 2;
+		}
+
+		function animate() {
+			requestAnimationFrame( animate );
+			render();
+		}	
+
+		function render() {
+			camera.position.x += ( mouseX - camera.position.x ) * .05;
+			camera.position.y += ( - mouseY - camera.position.y ) * .05;
+
+			camera.lookAt( scene.position );
+			renderer.render( scene, camera );
+		}	
+		//For Mouse Animation
+
     init();
-    // animate();
+    animate();//For Mouse Animation
 
     return (
       <div />
