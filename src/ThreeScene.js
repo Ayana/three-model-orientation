@@ -7,6 +7,7 @@ import * as THREE from "three";
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 // import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 // OBJLoader(THREE);
+import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js';
 
 import MODEL from "./assets/model.obj"
 import Texture from "./assets/uv_grid_opengl.jpg"
@@ -15,7 +16,7 @@ import Texture from "./assets/uv_grid_opengl.jpg"
 class ThreeScene extends Component {
   render() {
 
-		let scene, camera, renderer, cube;
+		let scene, camera, renderer, controls;
 		let mouseX = 0, mouseY = 0;
 		let windowHalfX = window.innerWidth / 2;
 		let windowHalfY = window.innerHeight / 2;
@@ -32,6 +33,7 @@ class ThreeScene extends Component {
 			
       document.body.appendChild( renderer.domElement );
 			document.addEventListener( 'mousemove', onDocumentMouseMove, false ); //For Mouse Animation
+			controls = new TrackballControls( camera, renderer.domElement );
 
 			// Add a light
 			const ambientLight = new THREE.AmbientLight( 0xcccccc, 0.4 );
@@ -53,8 +55,7 @@ class ThreeScene extends Component {
 			// }
 
 			// texture
-			// const textureLoader = new THREE.TextureLoader();
-			// const texture = textureLoader.load(Texture);
+      // const texture = new THREE.TextureLoader().load(Texture);
 
 			// const manager = new THREE.LoadingManager( loadModel );
 			// manager.onProgress = function ( item, loaded, total ) {
@@ -91,7 +92,7 @@ class ThreeScene extends Component {
 
       // // Object setting
       // const geometry = new THREE.BoxGeometry( 4, 4, 4 );
-      // // const texture = new THREE.TextureLoader().load('textures/crate.gif');
+      // const texture = new THREE.TextureLoader().load('textures/crate.gif');
       // const material = new THREE.MeshBasicMaterial({ wireframe: true })
       // // const material = new THREE.MeshBasicMaterial( { color: 0x0000ff } );
 
@@ -109,14 +110,6 @@ class ThreeScene extends Component {
 			// );
     }
 
-
-    // const animate = function () {
-    // function animate() {
-    //   // requestAnimationFrame( animate );
-    //   // cube.rotation.x += 0.01;
-    //   // cube.rotation.y += 0.01;
-    //   renderer.render( scene, camera );
-    // };
 
 		// WindowResizeOptimization
 		window.addEventListener('resize', () => {
@@ -141,6 +134,8 @@ class ThreeScene extends Component {
 
 		function animate() {
 			requestAnimationFrame( animate );
+			controls.update();
+			
 			render();
 		}	
 
