@@ -10,12 +10,12 @@ import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js';
 
 import MODEL from './assets/model.obj';
-// import Texture from './assets/uv_grid_opengl.jpg';
+import Texture from './assets/uv_grid_opengl.jpg';
 
 class ThreeScene extends Component {
   render() {
     // let container;
-    let scene, camera, renderer, controls;
+    let scene, camera, renderer, cube, controls;
     let mouseX = 0,
       mouseY = 0;
     let windowHalfX = window.innerWidth / 2;
@@ -95,14 +95,21 @@ class ThreeScene extends Component {
         renderer.render(scene, camera);
       });
 
-      // // Object setting
-      // const geometry = new THREE.BoxGeometry( 4, 4, 4 );
-      // const texture = new THREE.TextureLoader().load('textures/crate.gif');
-      // const material = new THREE.MeshBasicMaterial({ wireframe: true })
-      // // const material = new THREE.MeshBasicMaterial( { color: 0x0000ff } );
+      // Geometry
+      const geometry = new THREE.BoxGeometry(4, 4, 4);
+      const material = new THREE.MeshBasicMaterial({
+        color: 0xff0000,
+        transparent: true,
+        opacity: 1,
+        // wireframe: true,
+        // wireframeLinewidth: 15,
+        // wireframeLinejoin: 'round',
+        // wireframeLinecap: 'round',
+        map: new THREE.TextureLoader().load(Texture)
+      });
 
-      // cube = new THREE.Mesh( geometry, material );
-      // scene.add( cube );
+      cube = new THREE.Mesh(geometry, material);
+      scene.add(cube);
 
       // this.THREE = THREE;
       // const loader = new this.THREE.OBJLoader();

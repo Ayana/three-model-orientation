@@ -5,10 +5,10 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 // import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js';
 
 import MODEL from './assets/model.obj';
-// import Texture from './assets/uv_grid_opengl.jpg';
+import Texture from './assets/uv_grid_opengl.jpg';
 // import MODEL from './assets/model_default.obj';
 
-const ThreeScene3 = () => {
+const ThreeSceneControls = () => {
   // let container;
   let scene, camera, renderer, model, controls;
 
@@ -47,9 +47,16 @@ const ThreeScene3 = () => {
     // Model setting
     const loader = new OBJLoader();
     loader.load(MODEL, (object) => {
-      scene.add(object);
-      model = object.children[0];
+      // const texture = new THREE.TextureLoader().load(Texture);
+      // object.traverse(function(child) {
+      //   if (child instanceof THREE.Mesh) {
+      //     child.material.map = texture;
+      //     // child.castShadow = true;
+      //     // child.receiveShadow = true;
+      //   }
+      // });
       object.position.set(0, 0, 0);
+      scene.add(object);
       // animate();
       render();
     });
@@ -88,4 +95,4 @@ const ThreeScene3 = () => {
 
   return <div className='scene'></div>;
 };
-export default ThreeScene3;
+export default ThreeSceneControls;
