@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import * as THREE from 'three';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
@@ -9,27 +9,28 @@ import MODEL from './assets/model.obj';
 // import MODEL from './assets/model_default.obj';
 
 const ThreeScene3 = () => {
-  // let container, scene, camera, renderer, controls;
+  // let container;
   let scene, camera, renderer, model, controls;
-  // container = document.querySelector('.scene');
 
   function init() {
+    // container = document.querySelector('.scene');
     scene = new THREE.Scene();
 
     // Camera setting
-    const fov = 120;
+    const fov = 100;
     const aspect = window.innerWidth / window.innerHeight;
     const near = 0.15;
-    const far = 1000;
+    const far = 2000;
 
     camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-    camera.position.set(0, 0, 40); //x, y, z
-    // camera.position.z = 400;
+    camera.position.set(0, 0, 20); //x, y, z
+    // camera.position.z = 20;
 
     renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setClearColor('#DDD');
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
+    // container.appendChild(renderer.domElement);
     document.body.appendChild(renderer.domElement);
 
     // Add a light
@@ -40,7 +41,7 @@ const ThreeScene3 = () => {
     // scene.add(pointLight);
 
     const light = new THREE.DirectionalLight(0x404040, 3);
-    light.position.set(10, 10, 10);
+    light.position.set(10, 10, 20);
     scene.add(light);
 
     // Model setting
@@ -48,15 +49,15 @@ const ThreeScene3 = () => {
     loader.load(MODEL, (object) => {
       scene.add(object);
       model = object.children[0];
-      object.position.set(0, -2, -2);
-      animate();
+      object.position.set(0, 0, 0);
+      // animate();
       render();
     });
 
     controls = new OrbitControls(camera, renderer.domElement);
     controls.addEventListener('change', render); // use if there is no animation loop
-    controls.minDistance = 2;
-    controls.maxDistance = 10;
+    controls.minDistance = 16;
+    controls.maxDistance = 80;
     controls.target.set(0, 0, -0.2);
     controls.update();
 
