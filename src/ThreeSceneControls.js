@@ -1,98 +1,100 @@
-import React from 'react';
-import * as THREE from 'three';
-import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import React from 'react'
+import * as THREE from 'three'
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 // import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js';
 
-import MODEL from './assets/model.obj';
-import Texture from './assets/uv_grid_opengl.jpg';
 // import MODEL from './assets/model_default.obj';
+import MODEL from './assets/model.obj'
+// import Texture from './assets/uv_grid_opengl.jpg'
 
 const ThreeSceneControls = () => {
-  // let container;
-  let scene, camera, renderer, model, controls;
+  // let container
+  let scene, camera, renderer, model, controls
 
   function init() {
-    // container = document.querySelector('.scene');
-    scene = new THREE.Scene();
+    // const canvas = document.querySelector('.scene')
+    scene = new THREE.Scene()
 
     // Camera setting
-    const fov = 100;
-    const aspect = window.innerWidth / window.innerHeight;
-    const near = 0.15;
-    const far = 2000;
+    const fov = 100
+    const aspect = window.innerWidth / window.innerHeight
+    const near = 0.15
+    const far = 2000
 
-    camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-    camera.position.set(0, 0, 20); //x, y, z
+    camera = new THREE.PerspectiveCamera(fov, aspect, near, far)
+    camera.position.set(0, 0, 30) //x, y, z
     // camera.position.z = 20;
 
-    renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setClearColor('#DDD');
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    // container.appendChild(renderer.domElement);
-    document.body.appendChild(renderer.domElement);
+    // Render
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
+    // renderer.setClearColor('#DDD')
+    renderer.setPixelRatio(window.devicePixelRatio)
+    renderer.setSize(window.innerWidth, window.innerHeight)
+    // container = document.querySelector('.container')
+    // container = document.getElementById('container')
+    // container.appendChild(renderer.domElement)
+    document.body.appendChild(renderer.domElement)
 
     // Add a light
-    const ambientLight = new THREE.AmbientLight(0x404040, 2);
-    scene.add(ambientLight);
-
+    const ambientLight = new THREE.AmbientLight(0x404040, 2)
+    scene.add(ambientLight)
     // const pointLight = new THREE.PointLight(0xffffff, 0.6);
     // scene.add(pointLight);
 
-    const light = new THREE.DirectionalLight(0x404040, 3);
-    light.position.set(10, 10, 20);
-    scene.add(light);
+    const light = new THREE.DirectionalLight(0x404040, 3)
+    light.position.set(10, 10, 20)
+    scene.add(light)
 
     // Model setting
-    const loader = new OBJLoader();
+    const loader = new OBJLoader()
     loader.load(MODEL, (object) => {
-      // const texture = new THREE.TextureLoader().load(Texture);
+      // const texture = new THREE.TextureLoader().load(Texture)
       // object.traverse(function(child) {
       //   if (child instanceof THREE.Mesh) {
-      //     child.material.map = texture;
+      //     child.material.map = texture
       //     // child.castShadow = true;
       //     // child.receiveShadow = true;
       //   }
-      // });
-      object.position.set(0, 0, 0);
-      scene.add(object);
+      // })
+      object.position.set(0, -3, 0)
+      scene.add(object)
       // animate();
-      render();
-    });
+      render()
+    })
 
-    controls = new OrbitControls(camera, renderer.domElement);
-    controls.addEventListener('change', render); // use if there is no animation loop
-    controls.minDistance = 16;
-    controls.maxDistance = 80;
-    controls.target.set(0, 0, -0.2);
-    controls.update();
+    controls = new OrbitControls(camera, renderer.domElement)
+    controls.addEventListener('change', render) // use if there is no animation loop
+    controls.minDistance = 16
+    controls.maxDistance = 1200
+    controls.target.set(0, 0, -0.2)
+    controls.update()
 
-    window.addEventListener('resize', onWindowResize);
+    window.addEventListener('resize', onWindowResize)
   }
 
   // Render
   function render() {
-    renderer.render(scene, camera);
+    renderer.render(scene, camera)
   }
 
   // Animate
   function animate() {
-    requestAnimationFrame(animate);
-    model.rotation.y += 0.01;
-    render();
+    requestAnimationFrame(animate)
+    model.rotation.y += 0.01
+    render()
   }
 
   // WindowResizeOptimization
   function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    render();
+    camera.aspect = window.innerWidth / window.innerHeight
+    camera.updateProjectionMatrix()
+    renderer.setSize(window.innerWidth, window.innerHeight)
+    render()
   }
 
-  init();
+  init()
 
-  return <div className='scene'></div>;
-};
-export default ThreeSceneControls;
+  return <div className='container'></div>
+}
+export default ThreeSceneControls
