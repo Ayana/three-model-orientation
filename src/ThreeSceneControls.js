@@ -1,6 +1,7 @@
 import React from 'react'
 import * as THREE from 'three'
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js'
+// import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 // import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js';
 
@@ -20,10 +21,10 @@ const ThreeSceneControls = () => {
     const fov = 100
     const aspect = window.innerWidth / window.innerHeight
     const near = 0.15
-    const far = 2000
+    const far = 1000
 
     camera = new THREE.PerspectiveCamera(fov, aspect, near, far)
-    camera.position.set(0, 0, 30) //x, y, z
+    camera.position.set(0, 0, 20) //x, y, z
     // camera.position.z = 20;
 
     // Render
@@ -39,8 +40,9 @@ const ThreeSceneControls = () => {
     // Add a light
     const ambientLight = new THREE.AmbientLight(0x404040, 2)
     scene.add(ambientLight)
-    // const pointLight = new THREE.PointLight(0xffffff, 0.6);
-    // scene.add(pointLight);
+
+    const pointLight = new THREE.PointLight(0xffffff, 0.6)
+    scene.add(pointLight)
 
     const light = new THREE.DirectionalLight(0x404040, 3)
     light.position.set(10, 10, 20)
@@ -65,8 +67,8 @@ const ThreeSceneControls = () => {
 
     controls = new OrbitControls(camera, renderer.domElement)
     controls.addEventListener('change', render) // use if there is no animation loop
-    controls.minDistance = 16
-    controls.maxDistance = 1200
+    controls.minDistance = 12
+    controls.maxDistance = 400
     controls.target.set(0, 0, -0.2)
     controls.update()
 
