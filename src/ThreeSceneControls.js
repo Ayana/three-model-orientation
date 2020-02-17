@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import * as THREE from 'three'
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js'
 // import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
@@ -10,7 +10,6 @@ import MODEL from './assets/model.obj'
 // import Texture from './assets/uv_grid_opengl.jpg'
 
 const ThreeSceneControls = () => {
-  // let container
   let scene, camera, renderer, model, controls
 
   function init() {
@@ -31,11 +30,9 @@ const ThreeSceneControls = () => {
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
     // renderer.setClearColor('#DDD')
     renderer.setPixelRatio(window.devicePixelRatio)
-    renderer.setSize(window.innerWidth, window.innerHeight)
+    // renderer.setSize(window.innerWidth, window.innerHeight)
     // container = document.querySelector('.container')
-    // container = document.getElementById('container')
-    // container.appendChild(renderer.domElement)
-    document.body.appendChild(renderer.domElement)
+    // document.body.appendChild(renderer.domElement)
 
     // Add a light
     const ambientLight = new THREE.AmbientLight(0x404040, 2)
@@ -45,12 +42,13 @@ const ThreeSceneControls = () => {
     scene.add(pointLight)
 
     const light = new THREE.DirectionalLight(0x404040, 3)
-    light.position.set(10, 10, 20)
+    light.position.set(10, 20, 20)
     scene.add(light)
 
     // Model setting
     const loader = new OBJLoader()
     loader.load(MODEL, (object) => {
+      model = object.children[0]
       // const texture = new THREE.TextureLoader().load(Texture)
       // object.traverse(function(child) {
       //   if (child instanceof THREE.Mesh) {
@@ -61,7 +59,7 @@ const ThreeSceneControls = () => {
       // })
       object.position.set(0, -3, 0)
       scene.add(object)
-      // animate();
+      animate()
       render()
     })
 
@@ -94,6 +92,12 @@ const ThreeSceneControls = () => {
     renderer.setSize(window.innerWidth, window.innerHeight)
     render()
   }
+
+  useEffect(() => {
+    const container = document.querySelector('.container')
+    container.appendChild(renderer.domElement)
+    renderer.setSize(window.innerWidth, window.innerHeight)
+  })
 
   init()
 
