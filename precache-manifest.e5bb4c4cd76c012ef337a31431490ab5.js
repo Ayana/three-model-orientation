@@ -1,27 +1,31 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "9640f3c3f7ca239fa6f3b4099547f445",
+    "revision": "16c805fb3fa2259e1ad9af08fbc55c67",
     "url": "/three-model-orientation/index.html"
   },
   {
-    "revision": "e3fde477ca011ed362b7",
+    "revision": "01df333283534a10206a",
     "url": "/three-model-orientation/static/css/main.0732d049.chunk.css"
   },
   {
-    "revision": "7befa33e2bdcd857abc6",
-    "url": "/three-model-orientation/static/js/2.f452154c.chunk.js"
+    "revision": "bef37f1697dec0e90ecd",
+    "url": "/three-model-orientation/static/js/2.73958151.chunk.js"
   },
   {
     "revision": "d705cb622423d72c5defbf368ca70dcc",
-    "url": "/three-model-orientation/static/js/2.f452154c.chunk.js.LICENSE"
+    "url": "/three-model-orientation/static/js/2.73958151.chunk.js.LICENSE"
   },
   {
-    "revision": "e3fde477ca011ed362b7",
-    "url": "/three-model-orientation/static/js/main.3608aad9.chunk.js"
+    "revision": "01df333283534a10206a",
+    "url": "/three-model-orientation/static/js/main.2ca1d03c.chunk.js"
   },
   {
     "revision": "8eb2b2775db365176518",
     "url": "/three-model-orientation/static/js/runtime-main.51ceca92.js"
+  },
+  {
+    "revision": "dfebfcc1c20036036dd467bde0ed9f11",
+    "url": "/three-model-orientation/static/media/model.dfebfcc1.obj"
   },
   {
     "revision": "4ab88924a06aa9736f75ed82514216f7",
