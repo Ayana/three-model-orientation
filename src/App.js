@@ -1,16 +1,15 @@
-import React from 'react'
+import React from "react";
 // import ThreeScene from './ThreeScene';
-import ThreeSceneControls from './ThreeSceneControls'
-// import BG from './assets/360_japan.jpg'
-import './style.css'
+// import ThreeSceneControls from "./ThreeSceneControls";
+import ThreeSceneOrientation from "./ThreeSceneOrientation";
+import "./style.css";
 
 function App() {
   return (
-    <div className='App'>
-      {/* <ThreeScene /> */}
-      <ThreeSceneControls />
+    <div className="App">
+      <ThreeSceneOrientation />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
