@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/Ayana/three-model-orientation/static/css/main.8c00a45f.chunk.css",
+    "main.js": "/Ayana/three-model-orientation/static/js/main.312461bd.chunk.js",
+    "main.js.map": "/Ayana/three-model-orientation/static/js/main.312461bd.chunk.js.map",
+    "runtime-main.js": "/Ayana/three-model-orientation/static/js/runtime-main.422d06a3.js",
+    "runtime-main.js.map": "/Ayana/three-model-orientation/static/js/runtime-main.422d06a3.js.map",
+    "static/js/2.9b22c409.chunk.js": "/Ayana/three-model-orientation/static/js/2.9b22c409.chunk.js",
+    "static/js/2.9b22c409.chunk.js.map": "/Ayana/three-model-orientation/static/js/2.9b22c409.chunk.js.map",
+    "index.html": "/Ayana/three-model-orientation/index.html",
+    "precache-manifest.283abb2eb0c92a6fac3c5307f61bf7c4.js": "/Ayana/three-model-orientation/precache-manifest.283abb2eb0c92a6fac3c5307f61bf7c4.js",
+    "service-worker.js": "/Ayana/three-model-orientation/service-worker.js",
+    "static/css/main.8c00a45f.chunk.css.map": "/Ayana/three-model-orientation/static/css/main.8c00a45f.chunk.css.map",
+    "static/js/2.9b22c409.chunk.js.LICENSE": "/Ayana/three-model-orientation/static/js/2.9b22c409.chunk.js.LICENSE",
+    "static/media/model.obj": "/Ayana/three-model-orientation/static/media/model.dfebfcc1.obj",
+    "static/media/style.css": "/Ayana/three-model-orientation/static/media/sky.4ab88924.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.422d06a3.js",
+    "static/js/2.9b22c409.chunk.js",
+    "static/css/main.8c00a45f.chunk.css",
+    "static/js/main.312461bd.chunk.js"
+  ]
+}
